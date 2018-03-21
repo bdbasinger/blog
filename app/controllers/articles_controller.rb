@@ -13,9 +13,11 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
-
     # Returns a boolean indicating whether the article
-    # was saved or not
+    # was saved successfully or not.
+    # Some conditions depending on the successful save
+    # of the article depend on the validations provided
+    # in app/models/article.rb
     if @article.save
       redirect_to @article
     else
@@ -29,6 +31,8 @@ class ArticlesController < ApplicationController
     end
 
 end
+
+
 
 
 # Started at 5.10 on Ruby on Rails Tutorial
