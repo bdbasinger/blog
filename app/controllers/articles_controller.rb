@@ -8,6 +8,7 @@ class ArticlesController < ApplicationController
   end
 
   def new
+    @article = Article.new
   end
 
   def create
@@ -15,10 +16,11 @@ class ArticlesController < ApplicationController
 
     # Returns a boolean indicating whether the article
     # was saved or not
-    @article.save
-
-    # Redirects the user to the show action which we'll define later
-    redirect_to @article
+    if @article.save
+      redirect_to @article
+    else
+      render 'new'
+    end
   end
 
   private
@@ -26,9 +28,7 @@ class ArticlesController < ApplicationController
       params.require(:article).permit(:title, :text)
     end
 
-
-
 end
 
 
-# 5.6 Ruby On Rails Tutorial
+# Started at 5.10 on Ruby on Rails Tutorial
